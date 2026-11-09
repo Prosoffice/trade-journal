@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Trade Journal{% endblock %}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+    nav a { margin-right: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { text-align: left; padding: .4rem .6rem; border-bottom: 1px solid #e3e3e3; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .pos { color: #0a7a3d; } .neg { color: #b42318; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .card { border: 1px solid #e3e3e3; border-radius: 8px; padding: .8rem; }
+    .card b { display: block; font-size: 1.3rem; }
+    .messages { background: #eef8f1; padding: .6rem; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <nav><a href="{% url 'dashboard' %}">Dashboard</a><a href="{% url 'import' %}">Import CSV</a><a href="/admin/">Admin</a></nav>
+  {% if messages %}<div class="messages">{% for m in messages %}<p>{{ m }}</p>{% endfor %}</div>{% endif %}
+  {% block content %}{% endblock %}
+</body>
+</html>

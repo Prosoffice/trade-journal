@@ -1,0 +1,12 @@
+{% extends "trades/base.html" %}
+{% block title %}Import · Trade Journal{% endblock %}
+{% block content %}
+<h1>Import a Trading 212 export</h1>
+<p>Export your history from the Trading 212 app as CSV, pick the account it belongs to, and upload it.
+Re-importing an overlapping export is safe: rows already imported are skipped.</p>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Import</button>
+</form>
+{% endblock %}

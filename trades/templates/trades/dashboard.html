@@ -1,0 +1,41 @@
+{% extends "trades/base.html" %}
+{% block content %}
+<h1>Trade Journal</h1>
+
+<div class="cards">
+  <div class="card">Trades<b>{{ summary.trade_count }}</b></div>
+  <div class="card">Realised P&amp;L<b class="{% if summary.realised >= 0 %}pos{% else %}neg{% endif %}">£{{ summary.realised|floatformat:2 }}</b></div>
+  <div class="card">Wins / losses<b>{{ summary.wins }} / {{ summary.losses }}</b></div>
+  <div class="card">Dividends<b>£{{ summary.dividends|floatformat:2 }}</b></div>
+  <div class="card">Interest<b>£{{ summary.interest|floatformat:2 }}</b></div>
+  <div class="card">FX fees<b class="neg">£{{ summary.fx_fees|floatformat:2 }}</b></div>
+</div>
+
+<h2>Realised P&amp;L by ticker</h2>
+<table>
+  <tr><th>Ticker</th><th>Name</th><th class="num">Sells</th><th class="num">Realised</th></tr>
+  {% for row in by_ticker %}
+  <tr><td>{{ row.ticker }}</td><td>{{ row.name }}</td><td class="num">{{ row.sells }}</td>
+      <td class="num {% if row.realised >= 0 %}pos{% else %}neg{% endif %}">£{{ row.realised|floatformat:2 }}</td></tr>
+  {% empty %}<tr><td colspan="4">No closed trades yet. <a href="{% url 'import' %}">Import an export</a>.</td></tr>{% endfor %}
+</table>
+
+<h2>Realised P&amp;L by month</h2>
+<table>
+  <tr><th>Month</th><th class="num">Sells</th><th class="num">Realised</th></tr>
+  {% for row in by_month %}
+  <tr><td>{{ row.month|date:"M Y" }}</td><td class="num">{{ row.sells }}</td>
+      <td class="num {% if row.realised >= 0 %}pos{% else %}neg{% endif %}">£{{ row.realised|floatformat:2 }}</td></tr>
+  {% endfor %}
+</table>
+
+<h2>Recent trades</h2>
+<table>
+  <tr><th>When (UTC)</th><th>Account</th><th>Side</th><th>Ticker</th><th class="num">Qty</th><th class="num">Price</th><th class="num">Total</th></tr>
+  {% for t in recent %}
+  <tr><td>{{ t.executed_at|date:"Y-m-d H:i" }}</td><td>{{ t.account }}</td><td>{{ t.get_side_display }}</td><td>{{ t.ticker }}</td>
+      <td class="num">{{ t.quantity|floatformat:4 }}</td><td class="num">{{ t.price|floatformat:2 }} {{ t.price_currency }}</td>
+      <td class="num">£{{ t.total|floatformat:2 }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
