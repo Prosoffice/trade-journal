@@ -1,0 +1,9 @@
+Action,Time (UTC),ISIN,Ticker,Name,Notes,ID,No. of shares,Price / share,Currency (Price / share),Exchange rate,Result,Currency (Result),Total,Currency (Total),Withholding tax,Currency (Withholding tax),Currency conversion fee,Currency (Currency conversion fee)
+Deposit,2025-01-02 09:00:00,,,,"Sample deposit",dep-0001,,,,,,,1000.00,"GBP",,,,
+Market buy,2025-01-06 14:35:10,US0000000001,ACME,"Acme Corp",,ord-0001,4.0000000000,100.0000000000,USD,1.25000000,,,320.00,"GBP",,,0.48,"GBP"
+Market buy,2025-01-20 15:02:44,US0000000002,GLBX,"Globex Inc",,ord-0002,10.0000000000,20.0000000000,USD,1.25000000,,,160.00,"GBP",,,0.24,"GBP"
+Market sell,2025-02-10 16:12:03,US0000000001,ACME,"Acme Corp",,ord-0003,4.0000000000,112.5000000000,USD,1.25000000,40.00,"GBP",360.00,"GBP",,,0.54,"GBP"
+Dividend (Dividend),2025-02-15 12:00:00,US0000000002,GLBX,"Globex Inc",,,10.0000000000,0.1000000000,USD,,,,0.80,"GBP",0.12,USD,,
+Market sell,2025-03-03 14:40:51,US0000000002,GLBX,"Globex Inc",,ord-0004,10.0000000000,17.5000000000,USD,1.25000000,-20.00,"GBP",140.00,"GBP",,,0.21,"GBP"
+Interest on cash,2025-03-04 02:00:00,,,,"Interest on cash",int-0001,,,,,,,1.23,"GBP",,,,
+Withdrawal,2025-03-10 08:30:00,,,,"Sample withdrawal",wd-0001,,,,,,,-200.00,"GBP",,,,
